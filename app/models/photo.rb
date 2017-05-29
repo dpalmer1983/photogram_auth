@@ -12,8 +12,10 @@ class Photo < ApplicationRecord
   # a photo has many fans who like the photo
   has_many :fans, :through => :likes, :source => :user
 
+  #VALIDATIONS
+  # user_id: presence
+  validates :user_id, :presence => true
 
 
 
-  
 end

@@ -15,4 +15,10 @@ class User < ApplicationRecord
 
   # a user has many liked photos
   has_many :liked_photos, :through => :likes, :source => :photo
+
+  #VALIDATIONS
+  #username: presence, uniqueness
+  validates :username, :presence => true, :uniqueness => true
+
+
 end
