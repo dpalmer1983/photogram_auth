@@ -3,24 +3,6 @@ Rails.application.routes.draw do
   # In config/routes.rb
   root "photos#index"
 
-  # Routes for the User resource:
-  # CREATE
-  get "/users/new", :controller => "users", :action => "new"
-  post "/create_user", :controller => "users", :action => "create"
-
-  # READ
-  get "/users", :controller => "users", :action => "index"
-  get "/users/:id", :controller => "users", :action => "show"
-
-  # UPDATE
-  get "/users/:id/edit", :controller => "users", :action => "edit"
-  post "/update_user/:id", :controller => "users", :action => "update"
-
-  # DELETE
-  get "/delete_user/:id", :controller => "users", :action => "destroy"
-  #------------------------------
-
-
   # Routes for the Comment resource:
   # CREATE
   get "/comments/new", :controller => "comments", :action => "new"
