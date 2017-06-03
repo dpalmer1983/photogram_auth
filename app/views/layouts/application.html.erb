@@ -65,7 +65,7 @@
             </a>
           </li>
           <li>
-            <a href="/users/:user_id">
+            <a href="/users/:id">
               <i class="fa fa-fw fa-user"></i>
               <span class="hidden-sm">
                 My Wall
@@ -90,7 +90,9 @@
                 Sign Out
               </a>
             </li>
+
             <% else %>
+
             <li><a href="/users/sign_in">Sign in</a></li>
             <li><a href="/users/sign_up">Sign up</a></li>
             <% end %>
