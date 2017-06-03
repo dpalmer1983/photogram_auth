@@ -17,6 +17,15 @@ Rails.application.routes.draw do
   get "/delete_comment/:id", :controller => "comments", :action => "destroy"
   #------------------------------
 
+  # Routes for the My_Like resource:
+
+  # READ
+  get "/my_likes", :controller => "my_likes", :action => "index"
+
+  # CREATE
+  post "/create_my_like", :controller => "my_likes", :action => "create"
+  #------------------------------
+
   # Routes for the Like resource:
   # CREATE
   get "/likes/new", :controller => "likes", :action => "new"
@@ -25,8 +34,7 @@ Rails.application.routes.draw do
   # READ
   get "/likes", :controller => "likes", :action => "index"
   get "/likes/:id", :controller => "likes", :action => "show"
-  get "/my_likes", :controller => "likes", :action => "show"
-
+  
   # UPDATE
   get "/likes/:id/edit", :controller => "likes", :action => "edit"
   post "/update_like/:id", :controller => "likes", :action => "update"

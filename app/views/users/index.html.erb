@@ -10,8 +10,16 @@
           <th>User</th>
 
         </tr>
-  <% @users.each do |user| %>
-  <tr>
-    <td><%= user.username %></td>
-  <% end %>
+        <% @users.each do |user| %>
+        <tr>
+          <td>
+            <a href="/users/<%= user.id %>">
+              <%= user.username %>
+            </a>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>

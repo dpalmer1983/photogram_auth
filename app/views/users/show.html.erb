@@ -1,10 +1,13 @@
-<div class="row">
+<div class="page-header">
+  <h3>User #<%= @user.id %></h3>
+</div>
+
 <div class="col-md-8 col-md-offset-2">
- <div class="jumbotron">
-   <h3>
-     <h3><%= current_user.username %></h3>
-   </h3>
- </div>
+  <div class="jumbotron">
+    <h3>
+      <h3><%= current_user.username %></h3>
+    </h3>
+  </div>
 </div>
 </div>
 
@@ -14,5 +17,37 @@
       <i class="fa fa-plus"></i>
     </a>
     <hr>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Email</dt>
+      <dd><%= @user.email %></dd>
+
+      <dt>Username</dt>
+      <dd><%= @user.username %></dd>
+
+      <dt>Photos</dt>
+      <% @user.photos.each do |photo| %>
+      <dd><img src="<%= photo.image %>" width="50"></dd>
+      <dd><%= photo.caption %></dd>
+      <% end  %>
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/users" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/users/<%= @user.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_user/<%= @user.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
   </div>
 </div>
