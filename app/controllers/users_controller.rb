@@ -11,5 +11,10 @@ class UsersController < ApplicationController
     render("users/edit.html.erb")
   end
 
+  def show
+    @user = User.find(params[:id])
+  
+    render("users/show.html.erb")
+  end
 
 end
