@@ -77,38 +77,47 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="/users/edit">
-              <i class="fa fa-fw fa-edit"></i>
-              Edit Profile
-            </a>
-          </li>
-          <li>
-            <a href="/users/sign_out" data-method="delete" rel="nofollow">
-              <i class="fa fa-fw fa-sign-out"></i>
-              Sign Out
-            </a>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div>
-  </nav>
+            <% if current_user != nil %>
+            <li>
+              <a href="/users/edit">
+                <i class="fa fa-fw fa-edit"></i>
+                <%= current_user.username %>
+              </a>
+            </li>
+            <li>
+              <a href="/users/sign_out" data-method="delete" rel="nofollow">
+                <i class="fa fa-fw fa-sign-out"></i>
+                Sign Out
+              </a>
+            </li>
+            <% else %>
+            <li><a href="/users/sign_in">Sign in</a></li>
+            <li><a href="/users/sign_up">Sign up</a></li>
+            <% end %>
 
-  <div class="container">
-    <% if notice.present? %>
-    <div class="alert alert-dismissable alert-success">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= notice %>
-    </div>
-    <% end %>
-
-    <% if alert.present? %>
-    <div class="alert alert-dismissable alert-warning">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= alert %>
-    </div>
-    <% end %>
-
-    <%= yield %>
+          </a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
   </div>
+</nav>
+
+<div class="container">
+  <% if notice.present? %>
+  <div class="alert alert-dismissable alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= notice %>
+  </div>
+  <% end %>
+
+  <% if alert.present? %>
+  <div class="alert alert-dismissable alert-warning">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= alert %>
+  </div>
+  <% end %>
+
+  <%= yield %>
+</div>
 </body>
 </html>
