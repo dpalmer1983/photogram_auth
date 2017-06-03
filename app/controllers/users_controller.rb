@@ -34,36 +34,36 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @photo = Photo.find(params[:id])
+    @user = User.find(params[:id])
 
-    render("photos/edit.html.erb")
+    render("users/edit.html.erb")
   end
 
   def update
-    @photo = Photo.find(params[:id])
+    @user = User.find(params[:id])
 
-    @photo.caption = params[:caption]
-    @photo.image = params[:image]
-    @photo.user_id = params[:user_id]
+    @user.email = params[:email]
+    @user.username = params[:username]
+    @user.password = params[:password]
 
-    save_status = @photo.save
+    save_status = @user.save
 
     if save_status == true
-      redirect_to("/photos/#{@photo.id}", :notice => "Photo updated successfully.")
+      redirect_to("/users/#{@user.id}", :notice => "User updated successfully.")
     else
-      render("photos/edit.html.erb")
+      render("users/edit.html.erb")
     end
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
+    @user = User.find(params[:id])
 
-    @photo.destroy
+    @user.destroy
 
-    if URI(request.referer).path == "/photos/#{@photo.id}"
-      redirect_to("/", :notice => "Photo deleted.")
+    if URI(request.referer).path == "/users/#{@user.id}"
+      redirect_to("/", :notice => "User deleted.")
     else
-      redirect_to(:back, :notice => "Photo deleted.")
+      redirect_to(:back, :notice => "User deleted.")
     end
   end
 end

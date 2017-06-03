@@ -1,25 +1,28 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= devise_error_messages! %>
 
+<div class="form-group">
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, :class => "form-control" %>
     <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.username_field :username, autofocus: true %>
+    <%= f.label :username, :class => "form-control" %>
+    <%= f.text_field :username, autofocus: true %>
   </div>
 
-
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <%= f.label :password, :class => "form-control" %>
     <%= f.password_field :password, autocomplete: "off" %>
+    <p>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+    </p>
+
   </div>
 
   <div class="field">
@@ -30,6 +33,7 @@
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
-<% end %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>
