@@ -1,4 +1,4 @@
-class My_LikesController < ApplicationController
+class MylikesController < ApplicationController
   def index
     @likes = Like.all
     @mylikes = @likes.where(:user_id => current_user.id)
@@ -9,15 +9,16 @@ class My_LikesController < ApplicationController
   def create
     @like = Like.new
 
-    @like.user_id = params[:user_id]
     @like.photo_id = params[:photo_id]
+    @like.user_id = params[:user_id]
 
     save_status = @like.save
 
     if save_status == true
-      redirect_to("/likes/#{@like.id}", :notice => "Like created successfully.")
+      redirect_to("/photos", :notice => "Like created successfully.")
     else
       render("likes/new.html.erb")
     end
   end
+
 end

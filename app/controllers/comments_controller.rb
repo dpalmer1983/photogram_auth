@@ -20,8 +20,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new
 
-    @comment.photo_id = params[:photo_id]
     @comment.body = params[:body]
+    @comment.photo_id = params[:photo_id]
     @comment.user_id = params[:user_id]
 
     save_status = @comment.save
@@ -33,14 +33,14 @@ class CommentsController < ApplicationController
     end
   end
 
-  def quick_create
+  def quickcreate
     @comment = Comment.new
 
-    @comment.photo_id = params[:photo_id]
     @comment.body = params[:body]
+    @comment.photo_id = params[:photo_id]
     @comment.user_id = params[:user_id]
 
-    save_status = @comment.save_status
+    save_status = @comment.save
 
     if save_status == true
       redirect_to("/photos", :notice => "Comment created successfully.")
@@ -48,7 +48,6 @@ class CommentsController < ApplicationController
       render("comments/new.html.erb")
     end
   end
-
 
   def edit
     @comment = Comment.find(params[:id])
@@ -59,8 +58,8 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
 
-    @comment.photo_id = params[:photo_id]
     @comment.body = params[:body]
+    @comment.photo_id = params[:photo_id]
     @comment.user_id = params[:user_id]
 
     save_status = @comment.save
