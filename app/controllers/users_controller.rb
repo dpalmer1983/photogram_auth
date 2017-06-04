@@ -1,5 +1,4 @@
-class UsersController < ActionController::Base
-
+class UsersController < ApplicationController
   def index
     @users = User.all
 
@@ -11,5 +10,6 @@ class UsersController < ActionController::Base
 
     render("users/show.html.erb")
   end
+
 
 end

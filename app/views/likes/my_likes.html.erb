@@ -1,34 +1,17 @@
 <div class="container">
 
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <a href="/photos/new" class="btn btn-default btn-block">
-        <i class="fa fa-plus"></i>
-      </a>
-      <hr>
-    </div>
-  </div>
-
-
-  <% @photos.each do |photo| %>
-
+  <% @likes.each do |photo| %>
 
   <div class="row">
-
     <div class="col-md-8 col-md-offset-2">
-
       <div class="panel panel-default">
-
         <div class="panel-heading">
-
-          <h3 class="panel-title">
-
-            <a href="/users/<%=photo.user_id%>"><%=photo.user.username %></a>
+          <h3 class="panel-title">          <a href="/users/<%=photo.user_id%>"><%=photo.user_id %></a>
             <small>
               <%= time_ago_in_words(photo.updated_at)%> ago
             </small>
           </h3>
-        </div>
+        </div> <!-- close panel heading -->
 
         <div class="panel-body">
 
@@ -36,9 +19,6 @@
             <img src=<%=photo.image%> class="img-responsive">
           </a>
 
-
-          <!-- if the current user is not included in the list of fans of this photo, build a form to create likes  -->
-          <% if photo.fans.where(:id => current_user.id).count == 0 %>
           <p>
             <form action="/create_like" method="post">
               <!-- Hidden input for authenticity token to protect from forgery -->
@@ -51,32 +31,17 @@
               <button class="btn btn-link">
                 <i class="fa fa-heart-o"></i>
               </button>
+
+              <small>
+                <% photo.likes.each do |like| %>
+                <%=User.find_by(:id => like.user_id).username %>
+
+                <% end %>
+              </small>
+
             </form>
+
           </p>
-          <!-- otherwise (if the current user is in the list of fans) build a form to delete likes -->
-          <% else %>
-          <p>
-            <!-- change method from post or put in a tag with href =  -->
-            <form action="/delete_like/<%=photo.likes.find_by(:user_id => @current_user.id).id%>" method="get">
-
-              <button class="btn btn-link">
-                <i class="fa fa-heart"></i>
-              </button>
-            </form>
-          </p>
-
-          <% end %>  <!--closes if-then loop on liking-unliking-->
-
-          <% photo.likes.each do |like| %>
-          <small>
-            <%=User.find_by(:id => like.user_id).username %>
-          </small>
-          <% end %> <!--closes loop on listing all photo likes -->
-
-
-
-
-
 
           <ul class="media-list"
 
@@ -92,7 +57,7 @@
               <%=comment.body%>
             </div>
           </li>
-          <% end %> <!-- closes loop on listing all photo comments -->
+          <% end %>
 
           <li class="media">
             <div class="media-body">
@@ -122,7 +87,6 @@
           </li>
         </ul>
 
-
         <% if photo.user_id == current_user.id %>
         <a href="/photos" class="btn btn-primary"> <i class="fa fa-chevron-left"></i>
         </a>
@@ -140,16 +104,15 @@
         <a href="/photos" class="btn btn-primary"> <i class="fa fa-chevron-left"></i>
         </a>
 
-        <% end %> <!-- closes if-then on edit-delete buttons -->
+        <% end %>
 
+      </div>     <!-- close panel body -->
 
+    </div>  <!--close panel-->
 
+  </div>    <!--close col-->
 
-      </div>       <!-- closes panel body  -->
-    </div>     <!-- closes panel -->
-  </div>   <!-- closes offset -->
-</div>    <!-- closes row -->
+</div> <!--close row -->
+<% end %>
 
-<% end %> <!-- #closes full loop -->
-
-</div> <!--closes container -->
+</div>  <!--close container-->

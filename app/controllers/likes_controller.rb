@@ -11,6 +11,11 @@ class LikesController < ApplicationController
     render("likes/show.html.erb")
   end
 
+  def my_likes
+    @likes = current_user.liked_photos
+    render("likes/my_likes.html.erb")
+  end
+
   def new
     @like = Like.new
 
@@ -20,16 +25,12 @@ class LikesController < ApplicationController
   def create
     @like = Like.new
 
-    @like.photo_id = params[:photo_id]
     @like.user_id = params[:user_id]
+    @like.photo_id = params[:photo_id]
 
     save_status = @like.save
 
-    if save_status == true
-      redirect_to("/likes/#{@like.id}", :notice => "Like created successfully.")
-    else
-      render("likes/new.html.erb")
-    end
+    redirect_to("/photos", :notice => "Like created successfully.")
   end
 
   def edit
@@ -41,8 +42,8 @@ class LikesController < ApplicationController
   def update
     @like = Like.find(params[:id])
 
-    @like.photo_id = params[:photo_id]
     @like.user_id = params[:user_id]
+    @like.photo_id = params[:photo_id]
 
     save_status = @like.save
 

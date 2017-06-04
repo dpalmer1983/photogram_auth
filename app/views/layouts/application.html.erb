@@ -41,49 +41,57 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="/users">All Users</a></li>
-          <li><a href="/">All Posts</a></li>
+          <li><a href="/comments">Comments</a></li>
           <li><a href="/my_likes">My Likes</a></li>
+          <li><a href="/photos">Photos</a></li>
 
-        </ul>
+          <%if current_user != nil%>
 
-        <ul class="nav navbar-nav navbar-right">
+          <li><a href=  "/users/<%=current_user.id%>"> My Wall </a></li>
 
-          <% if current_user != nil %>
-          <li>
-            <a href="/users/edit"><%= current_user.username %>
-              <i class="fa fa-fw fa-edit"></i>
-            </a>
-          </li>
-          <li>
-            <a href="/users/sign_out" data-method="delete" rel="nofollow">Sign Out
-              <i class="fa fa-fw fa-sign-out"></i>
-            </a>
-          </li>
           <% else %>
-          <li><a href="/users/sign_in">Sign In</a></li>
-          <li><a href="/users/sign_up" rel="nofollow">Sign Up</a></li>
-          <% end %>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div>
-  </nav>
+          <li><a href="/users/sign_up">My Wall</li>
 
-  <div class="container">
-    <% if notice.present? %>
-    <div class="alert alert-dismissable alert-success">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= notice %>
-    </div>
-    <% end %>
+            <% end %>
 
-    <% if alert.present? %>
-    <div class="alert alert-dismissable alert-warning">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= alert %>
-    </div>
-    <% end %>
+          </ul>
 
-    <%= yield %>
-  </div>
-</body>
-</html>
+          <ul class="nav navbar-nav navbar-right">
+
+            <%if current_user != nil%>
+
+            <li><a href="/users/edit">Edit <%=current_user.username%> </a></li>
+            <li><a href="/users/sign_out" data-method="delete" rel="nofollow">   <i class="fa fa-fw fa-sign-out"></i> Sign Out</a></li>
+
+
+
+            <% else %>
+            <li><a href="/users/sign_up">Sign Up  </a></li>
+
+            <li><a href="/users/sign_in">Sign In  </a></li>
+
+            <% end %>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <% if notice.present? %>
+      <div class="alert alert-dismissable alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= notice %>
+      </div>
+      <% end %>
+
+      <% if alert.present? %>
+      <div class="alert alert-dismissable alert-warning">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= alert %>
+      </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+  </html>
