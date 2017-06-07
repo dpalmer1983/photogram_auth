@@ -2,6 +2,7 @@ class PhotosController < ApplicationController
   def index
     @photos = Photo.all
     @current_user = current_user
+    
     render("photos/index.html.erb")
   end
 
